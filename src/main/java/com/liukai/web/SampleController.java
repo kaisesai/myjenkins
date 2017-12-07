@@ -2,6 +2,8 @@ package com.liukai.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
-public class SampleController {
+public class SampleController implements EmbeddedServletContainerCustomizer {
 
   @RequestMapping("/")
   @ResponseBody
@@ -19,5 +21,10 @@ public class SampleController {
 
   public static void main(String[] args) throws Exception {
     SpringApplication.run(SampleController.class, args);
+  }
+
+  @Override
+  public void customize(ConfigurableEmbeddedServletContainer container) {
+    container.setPort(8081);
   }
 }
