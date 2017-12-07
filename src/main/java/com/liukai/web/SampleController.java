@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
-public class SampleController implements EmbeddedServletContainerCustomizer {
+public class SampleController {
 
   @RequestMapping("/")
   @ResponseBody
@@ -23,8 +23,4 @@ public class SampleController implements EmbeddedServletContainerCustomizer {
     SpringApplication.run(SampleController.class, args);
   }
 
-  @Override
-  public void customize(ConfigurableEmbeddedServletContainer container) {
-    container.setPort(8081);
-  }
 }
